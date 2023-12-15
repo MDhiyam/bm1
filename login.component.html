@@ -1,0 +1,56 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="card shadow-lg border-0 p-3">
+                    <div class="card-body">
+                        <h1 class="text-center py-1 animate__animated animate__tada">Sign In</h1>
+                        <form  action="" novalidate #f="ngForm" (ngSubmit)="f.form.valid&&onSubmit()">
+                            <div class="form-group input_group">
+                                <input type="email" required placeholder="" name="email" [(ngModel)]="loginObj.email" #email="ngModel" autocomplete="off">
+                                <label>Email</label>
+                                <i class="fa fa-envelope float-right"></i>
+                                <span class="text-danger" *ngIf="this.submit&&email.errors?.['required']">
+                                    Email is required.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <div class="password_field">
+                                    <input [type]="changetype?'password' : 'text'" required placeholder="" minlength="8" name="password" [(ngModel)]="loginObj.password" #password="ngModel">
+                                    <label>Password</label>
+                                    <i class="fa fa-lock" [ngClass]="visible?'fa fa-lock':'fa fa-unlock'" (click)="viewPass()"></i>
+                                </div>
+                                <span class="text-danger"  *ngIf="this.submit&&password.errors?.['required']">
+                                    Password is required.
+                                </span>
+                                <!-- <span class="text-danger" *ngIf="this.submit&&password.errors?.['minlength']">
+                                    Password should contain minimum 8 characters
+                                </span> -->
+                            </div>
+                            <div class="row mt-2">
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" id="remember_me"><span class="ml-1">Remember Me</span>
+                                        </label>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-12">
+                                    <a href="javascript:void(0);" class="forgot_pass float-right">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block rounded-pill" (click)="submit=true">Sign In</button>
+                            </div>
+                            <p class="text-center">Not registered yet?
+                                <span>
+                                    <a href="javascript:void(0);" routerLink="/register">Sign Up!</a>
+                                </span>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
