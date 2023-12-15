@@ -1,0 +1,74 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="card shadow-lg border-0 p-3">
+                    <div class="card-body">
+                        <h1 class="text-center py-1 animate__animated animate__tada">Sign Up</h1>
+                        <form  action="" novalidate #f="ngForm" (ngSubmit)="f.form.valid&&onSubmit()">
+                            <div class="form-group input_group">
+                                <input type="text" name="name" placeholder="" required [(ngModel)]="signupObj.name" #name="ngModel">
+                                <label>Name</label>
+                                <i class="fa fa-user float-right"></i>
+                                <span class="text-danger" *ngIf="this.submit&&name.errors?.['required']">
+                                    Name is required.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <input type="email" required placeholder="" name="email" [(ngModel)]="signupObj.email" #email="ngModel">
+                                <label>Email</label>
+                                <i class="fa fa-envelope float-right"></i>
+                                <span class="text-danger" *ngIf="this.submit&&email.errors?.['required']">
+                                    Email is required.
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <div class="password_field">
+                                    <input [type]="changetype?'password' : 'text'" required placeholder="" minlength="8" name="password" [(ngModel)]="signupObj.password" #password="ngModel">
+                                    <label>Password</label>
+                                    <i class="fa fa-lock" [ngClass]="visible?'fa fa-lock':'fa fa-unlock'" (click)="viewPass()"></i>
+                                </div>
+                                <span class="text-danger"  *ngIf="this.submit&&password.errors?.['required']">
+                                    Password is required.
+                                </span>
+                                <span class="text-danger" *ngIf="this.submit&&password.errors?.['minlength']">
+                                    Password should contain minimum 8 characters
+                                </span>
+                            </div>
+                            <div class="form-group input_group">
+                                <div class="password_field">
+                                    <input [type]="changetype1?'password' : 'text'" required placeholder="" name="confirmPassword" [(ngModel)]="signupObj.confirmPassword" #confirmPassword="ngModel">
+                                    <label>Confirm Password</label>
+                                    <i class="fa fa-lock" [ngClass]="visible1?'fa fa-lock':'fa fa-unlock'" (click)="viewPass1()"></i>
+                                </div>
+                                <span class="text-danger"  *ngIf="this.submit&&confirmPassword.errors?.['required']">
+                                    Confirm Password is required.
+                                </span>
+                                <span class="text-danger" *ngIf="this.submit && signupObj.password !== signupObj.confirmPassword && !confirmPassword.errors?.['required']">
+                                    Passwords do not match.
+                                </span>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="form-group form-check">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" id="remember_me"><span class="ml-1">I agree the terms & conditions</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <button type="submit" class="btn btn-dark btn-lg btn-block rounded-pill" (click)="submit=true">Sign Up</button>
+                            </div>
+                            <p class="text-center">Already have an account?
+                                <span>
+                                    <a href="javascript:void(0);" routerLink="/">Sign In!</a>
+                                </span>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
